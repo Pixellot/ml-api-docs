@@ -31,7 +31,7 @@
     "schemaVersion": {
       "type": "string",
       "description": "Schema version for data format compatibility",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
     },
     "schemaUrl": {
       "type": "string",
@@ -106,8 +106,8 @@
       "eventId": "689cafb95e51ceb1b3440e53",
       "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
       "sport": "basketball",
-      "schemaVersion": "1.0.0",
-      "schemaUrl": "https://api.pixellot.tv/schemas/player-highlights/v1.0.0",
+      "schemaVersion": "v1.0.0",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
       "processedAt": "2025-08-17T07:14:53.154476Z",
       "players": {
         "11_ffffff": {
