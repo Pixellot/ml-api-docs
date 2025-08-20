@@ -1,8 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://api.pixellot.tv/schemas/player-highlights/v1.0.0",
   "title": "ML Player Highlights API Schema",
-  "description": "Schema for ML-generated player highlights data from basketball game analysis",
+  "description": "Schema for ML-generated player highlights data from basketball game",
   "type": "object",
   "required": [
     "eventId",
