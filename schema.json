@@ -64,7 +64,6 @@
             "jerseyNumber": {
               "type": "integer",
               "minimum": 0,
-              "maximum": 99,
               "description": "Player jersey number (0-99)"
             },
             "highlights": {
@@ -119,6 +118,33 @@
             {
               "startTime": 383,
               "endTime": 394,
+              "type": "shot"
+            }
+          ]
+        },
+        "42_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 42,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 491,
+              "type": "shot"
+            }
+          ]
+        },
+        "22_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 22,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 494,
+              "type": "assist"
+            },
+            {
+              "startTime": 1038,
+              "endTime": 1049,
               "type": "shot"
             }
           ]
