@@ -1,0 +1,4 @@
+node_modules/
+testing-data/
+db-config.json
+validations
