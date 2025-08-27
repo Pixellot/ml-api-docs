@@ -22,5 +22,5 @@ This document describes the highlights detected in basketball ML breakdown. The 
 
 **Type Values:**
 
-* shot: An attempt by a player to score points by shooting the basketball toward the opponent's basket  
+* shot: A successful shot attempt by a player  
 * assist: A pass that directly leads to a teammate's successful shot
