@@ -6,7 +6,7 @@ Get AI-generated basketball player highlights as structured JSON data instead of
 
 ## What You Get
 
-- **Player Highlights**: AI detects shots, assists, and key plays
+- **Player Highlights**: AI detects made shots and assists
 - **Precise Timing**: Exact start/end timestamps for each highlight
 - **JSON Format**: Structured data that's easy to integrate
 - **Real-time Processing**: Get notified when analysis completes
@@ -104,12 +104,5 @@ When processing completes, you'll get a JSON file with this structure:
 - Files are uploaded to your configured storage bucket
 - Check that your storage configuration is correct
 - Files remain available for 30 days after processing
-
-## Need Help?
-
-Contact **ml-api-support@pixellot.com** with:
-- Event ID
-   - Timestamp of the issue
-- Any error messages from webhooks
 
 For more details on setting up notifications, see the [Basketball Highlight Notifications guide](ml-breakdown-subscription-guide.md).

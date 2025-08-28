@@ -6,8 +6,8 @@ Add AI-powered player highlight detection to your basketball events. This extens
 
 ## What It Does
 
-- **Detects Key Plays**: Automatically finds shots, assists, and other highlights
-- **Identifies Players**: Tracks actions by jersey number
+- **Detects Key Plays**: Automatically finds made shots and assists
+- **Identifies Players**: Tracks actions by jersey color and number
 - **Provides Timestamps**: Precise start/end times for each highlight
 - **Generates JSON**: Structured data you can integrate with your systems
 
@@ -99,15 +99,6 @@ Look for `"extensionsIdsToApply": ["YOUR_EXTENSION_ID"]` in the response.
 **API authentication failing?**
 - Your token may have expired - get a new one
 - Verify your username and password are correct
-
-## Need Help?
-
-Contact **ml-api-support@pixellot.com** with:
-- Your tenant name and username
-- Extension ID you're trying to use
-- Event ID (if applicable)
-- Full API request and response
-- Any error messages
 
 ## Related Guides
 

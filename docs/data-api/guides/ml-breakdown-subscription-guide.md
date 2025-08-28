@@ -166,11 +166,3 @@ curl -X PUT -H "Authorization: Bearer YOUR_TOKEN" \
 curl -X DELETE -H "Authorization: Bearer YOUR_TOKEN" \
   https://api.pixellot.tv/v1/monitoring/subscriptions/SUBSCRIPTION_ID
 ```
-
-## Need Help?
-
-Contact **ml-api-support@pixellot.com** with:
-- Your subscription ID
-- Event ID (if applicable)  
-- Webhook endpoint URL
-- Any error messages
