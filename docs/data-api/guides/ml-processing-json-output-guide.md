@@ -105,5 +105,4 @@ When processing completes, you'll get a JSON file with this structure:
 - Check that your storage configuration is correct
 - Files remain available for 30 days after processing
 
-
 For more details on setting up notifications, see the [Basketball Highlight Notifications guide](ml-breakdown-subscription-guide.md).
