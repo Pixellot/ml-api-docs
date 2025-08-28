@@ -55,24 +55,24 @@ You'll receive three types of notifications:
 ### 2. Processing Completed ✅
 ```json
 {
-  "payload": "{\"eventId\":\"68ac3315e9dde9b6a61d71d7\",\"fileUrl\":\"https://cdn.example.com/highlights.json\",\"status\":\"completed\",\"jobCreatedAt\":\"2024-01-15T10:30:00Z\",\"jobCompletedAt\":\"2024-01-15T10:45:30Z\"}"
+  "payload": "{\"eventId\":\"68ac3315e9dde9b6a61d71d7\",\"fileUrl\":\"https://cdn.example.com/highlights.json\",\"status\":\"completed\",\"jobCompletedAt\":\"2024-01-15T10:45:30Z\"}"
 }
 ```
 
 ### 3. Processing Failed ❌
 ```json
 {
-  "payload": "{\"eventId\":\"68ac3315e9dde9b6a61d71d7\",\"status\":\"failed\",\"jobCreatedAt\":\"2024-01-15T10:30:00Z\",\"jobCompletedAt\":\"2024-01-15T10:32:15Z\",\"reason\":\"Event validation failed because of missing required files\"}"
+  "payload": "{\"eventId\":\"68ac3315e9dde9b6a61d71d7\",\"status\":\"failed\",\"reason\":\"Event validation failed because of missing required files\"}"
 }
 ```
 
 **Key Fields:**
-- `eventId`: Your event identifier
-- `fileUrl`: Download link for JSON data (when completed)
-- `status`: `processing`, `completed`, or `failed`
-- `jobCreatedAt`: ISO 8601 timestamp when processing job was created
-- `jobCompletedAt`: ISO 8601 timestamp when processing job finished (completed or failed)
-- `reason`: Error details (when failed)
+- `eventId`: Your event identifier (always present)
+- `status`: `processing`, `completed`, or `failed` (always present)
+- `jobCreatedAt`: ISO 8601 timestamp when processing job was created (only in "processing" notifications)
+- `fileUrl`: Download link for JSON data (only in "completed" notifications)
+- `jobCompletedAt`: ISO 8601 timestamp when processing job finished (only in "completed" notifications)
+- `reason`: Error details (only in "failed" notifications)
 
 ## What the JSON Data Looks Like
 
@@ -148,7 +148,11 @@ app.post('/basketball-highlights', (req, res) => {
     // Download and process the JSON file
     downloadHighlights(eventId, fileUrl);
   } else if (status === 'failed') {
+    // Failed notifications only contain eventId, status, and reason
     console.log(`Processing failed for ${eventId}: ${reason}`);
+  } else if (status === 'processing') {
+    // Processing started - jobCreatedAt is available
+    console.log(`Processing started for ${eventId} at ${jobCreatedAt}`);
   }
 });
 
