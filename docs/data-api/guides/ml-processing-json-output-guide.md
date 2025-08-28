@@ -52,9 +52,14 @@ When processing completes, you'll get a JSON file with this structure:
 ```json
 {
   "eventId": "507f1f77bcf86cd799439011",
-  "eventName": "Lakers vs Warriors",
+  "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
+  "sport": "basketball",
+  "schemaVersion": "v1.0.0",
+  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
+  "processedAt": "2024-01-15T14:30:45Z",
   "players": {
-    "home_23": {
+    "23_ffffff": {
+      "jerseyColor": "#ffffff",
       "jerseyNumber": 23,
       "highlights": [
         {
@@ -69,7 +74,8 @@ When processing completes, you'll get a JSON file with this structure:
         }
       ]
     },
-    "away_30": {
+    "30_ff0000": {
+      "jerseyColor": "#ff0000",
       "jerseyNumber": 30,
       "highlights": [
         {
@@ -85,9 +91,16 @@ When processing completes, you'll get a JSON file with this structure:
 
 **Key Fields:**
 - `eventId`: Your basketball event identifier
-- `players`: Organized by `{team}_{jerseyNumber}` format
-- `startTime`/`endTime`: Highlight timestamps in seconds
-- `type`: Action type (`shot`, `assist`, etc.)
+- `hlsUrl`: Main HLS stream URL for the event
+- `sport`: Sport type (currently basketball)
+- `schemaVersion`: API schema version
+- `processedAt`: When processing completed (ISO 8601 timestamp)
+- `players`: Organized by `{jerseyNumber}_{colorHex}` format containing:
+  - `jerseyColor`: Player's jersey color (hex code)
+  - `jerseyNumber`: Player's jersey number
+  - `highlights`: Array of highlight segments with:
+    - `startTime`/`endTime`: Highlight timestamps in seconds
+    - `type`: Action type (`shot` or `assist`)
 
 ## Common Issues
 
