@@ -77,7 +77,3 @@ No, updates are included in your API subscription.
 
 **How often do major updates happen?**
 Rarely. We minimize breaking changes and give plenty of notice.
-
-## Need Help?
-
-Contact **ml-api-support@pixellot.com** if you have questions about schema updates or need assistance with testing.
