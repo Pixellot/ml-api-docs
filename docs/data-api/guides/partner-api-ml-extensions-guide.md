@@ -94,7 +94,6 @@ Look for `"extensionsIdsToApply": ["YOUR_EXTENSION_ID"]` in the response.
 
 **No AI processing happening?**
 - Ensure `productionType` is set to `"basketball"`
-- Check that your event has both HD and panoramic recordings
 
 **API authentication failing?**
 - Your token may have expired - get a new one
