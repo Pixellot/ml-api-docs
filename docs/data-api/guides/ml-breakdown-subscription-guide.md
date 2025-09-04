@@ -74,57 +74,11 @@ You'll receive three types of notifications:
 - `jobCompletedAt`: ISO 8601 timestamp when processing job finished (only in "completed" notifications)
 - `reason`: Error details (only in "failed" notifications)
 
-## What the JSON Data Looks Like
+## JSON Data Structure
 
-When processing completes, download the JSON file to get player highlights:
+The full schema for the basketball player highlights JSON output is defined in [Pixellot ML Breakdown Schema](../specifications/pixellot-ml-breakdown-schema.md).
 
-```json
-{
-  "eventId": "68ac3315e9dde9b6a61d71d7",
-  "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
-  "sport": "basketball",
-  "schemaVersion": "v1.0.0",
-  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
-  "processedAt": "2024-01-15T10:45:30Z",
-  "players": {
-    "23_ffffff": {
-      "jerseyColor": "#ffffff",
-      "jerseyNumber": 23,
-      "highlights": [
-        {
-          "startTime": 125.5,
-          "endTime": 132.8,
-          "type": "shot"
-        }
-      ]
-    },
-    "10_ff0000": {
-      "jerseyColor": "#ff0000",
-      "jerseyNumber": 10,
-      "highlights": [
-        {
-          "startTime": 98.2,
-          "endTime": 104.7,
-          "type": "assist"
-        }
-      ]
-    }
-  }
-}
-```
-
-The JSON response includes:
-- **eventId**: Unique event identifier
-- **hlsUrl**: Main HLS stream URL for the event
-- **sport**: Sport type (currently basketball)
-- **schemaVersion**: API schema version
-- **processedAt**: When processing completed (ISO 8601 timestamp)
-- **players**: Object keyed by `{jerseyNumber}_{colorHex}` containing:
-  - **jerseyColor**: Player's jersey color (hex code)
-  - **jerseyNumber**: Player's jersey number
-  - **highlights**: Array of highlight segments with:
-    - **startTime/endTime**: When the highlight occurs (in seconds)
-    - **type**: Action type (`shot` or `assist`)
+When processing completes, you'll receive a JSON file that follows this specification.
 
 ## Simple Webhook Handler
 
