@@ -171,13 +171,6 @@ async function downloadHighlights(eventId, fileUrl) {
 - Check your webhook endpoint is publicly accessible via HTTPS
 - Verify your subscription is active: `GET /v1/monitoring/subscriptions`
 
-**File download fails?**  
-- Files are available for 30 days after processing
-- Add retry logic with a few seconds delay
-
-**No highlights detected?**
-- This happens when no clear player actions are found in the video
-- Check that your event has both HD and panoramic camera views
 
 ## Managing Your Subscription
 

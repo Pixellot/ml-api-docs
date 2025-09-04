@@ -2,7 +2,7 @@
 
 ## Overview
 
-Get AI-generated basketball player highlights as structured JSON data instead of video clips. Perfect for creating your own highlight reels, analytics dashboards, or integrating with broadcast systems.
+Get AI-generated basketball player highlights as structured JSON data. Perfect for creating your own highlight reels, analytics dashboards, or integrating with broadcast systems.
 
 ## What You Get
 
@@ -32,7 +32,6 @@ Add the AI extension to your basketball events using the [Partner API guide](par
 
 The extension automatically processes events that have:
 - `productionType: "basketball"`
-- HD and panoramic camera recordings
 
 ## Notifications
 
@@ -106,16 +105,9 @@ When processing completes, you'll get a JSON file with this structure:
 
 **No highlights detected?**
 - This happens when the AI doesn't find clear player actions
-- Make sure your event has both HD and panoramic recordings
 - Check that the event is properly configured as `productionType: "basketball"`
 
 **Processing takes too long?**
-- Processing typically completes within 10-30 minutes after video is available
-- Longer videos or poor quality footage may take additional time
-
-**Missing JSON file?**
-- Files are uploaded to your configured storage bucket
-- Check that your storage configuration is correct
-- Files remain available for 30 days after processing
+- Processing completes up to 4 hours after the video is available
 
 For more details on setting up notifications, see the [Basketball Highlight Notifications guide](ml-breakdown-subscription-guide.md).
