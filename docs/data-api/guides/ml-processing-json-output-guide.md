@@ -108,6 +108,6 @@ When processing completes, you'll get a JSON file with this structure:
 - Check that the event is properly configured as `productionType: "basketball"`
 
 **Processing takes too long?**
-- Processing completes up to 4 hours after the video is available
+- Processing completes up to 4 hours after the video is available from last event
 
 For more details on setting up notifications, see the [Basketball Highlight Notifications guide](ml-breakdown-subscription-guide.md).
