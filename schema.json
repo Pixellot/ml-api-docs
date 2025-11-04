@@ -98,57 +98,40 @@
         }
       },
       "additionalProperties": false
-    }
-  },
-  "additionalProperties": false,
-  "examples": [
-    {
-      "eventId": "689cafb95e51ceb1b3440e53",
-      "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
-      "sport": "basketball",
-      "schemaVersion": "v1.0.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
-      "processedAt": "2025-08-17T07:14:53.154476Z",
-      "players": {
-        "11_ffffff": {
-          "jerseyColor": "#ffffff",
-          "jerseyNumber": 11,
-          "highlights": [
-            {
-              "startTime": 383,
-              "endTime": 394,
-              "type": "shot"
-            }
-          ]
-        },
-        "42_ff0000": {
-          "jerseyColor": "#ff0000",
-          "jerseyNumber": 42,
-          "highlights": [
-            {
-              "startTime": 480,
-              "endTime": 491,
-              "type": "shot"
-            }
-          ]
-        },
-        "22_ff0000": {
-          "jerseyColor": "#ff0000",
-          "jerseyNumber": 22,
-          "highlights": [
-            {
-              "startTime": 480,
-              "endTime": 494,
-              "type": "assist"
-            },
-            {
-              "startTime": 1038,
-              "endTime": 1049,
-              "type": "shot"
-            }
-          ]
+    },
+    "unknownPlayers": {
+      "type": "array",
+      "description": "Shot/assist detections where player identification failed",
+      "items": {
+        "type": "object",
+        "required": [
+          "startTime",
+          "endTime",
+          "color_hex",
+          "playerN"
+        ],
+        "properties": {
+          "startTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment start timestamp in seconds"
+          },
+          "endTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment end timestamp in seconds"
+          },
+          "color_hex": {
+            "type": "string",
+            "description": "Team color in hex format (empty string if unknown)"
+          },
+          "playerN": {
+            "type": "integer",
+            "description": "Player number (-1 for unknown)"
+          }
         }
       }
     }
-  ]
+  },
+  "additionalProperties": false
 }
