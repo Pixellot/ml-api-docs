@@ -103,6 +103,39 @@ JSON Schema specification for ML-generated basketball player highlights data.
         }
       },
       "additionalProperties": false
+    },
+    "unknownPlayers": {
+      "type": "array",
+      "description": "Shot/assist detections where player identification failed",
+      "items": {
+        "type": "object",
+        "required": [
+          "startTime",
+          "endTime",
+          "color_hex",
+          "playerN"
+        ],
+        "properties": {
+          "startTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment start timestamp in seconds"
+          },
+          "endTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment end timestamp in seconds"
+          },
+          "color_hex": {
+            "type": "string",
+            "description": "Team color in hex format (empty string if unknown)"
+          },
+          "playerN": {
+            "type": "integer",
+            "description": "Player number (-1 for unknown)"
+          }
+        }
+      }
     }
   },
   "additionalProperties": false
