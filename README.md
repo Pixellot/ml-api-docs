@@ -8,7 +8,7 @@ The ML Player Highlights API provides structured data about key basketball momen
 
 ## API Schema
 
-The current API schema version is `v1.0.0` and can be found in [schema.json](schema.json).
+The current API schema version is `v1.0.1` and can be found in [schema.json](schema.json).
 
 ## Support
 
