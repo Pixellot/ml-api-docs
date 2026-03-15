@@ -93,8 +93,8 @@ JSON Schema specification for ML-generated basketball player highlights data.
                   },
                   "type": {
                     "type": "string",
-                    "enum": ["shot", "assist"],
-                    "description": "Action type (shot or assist)"
+                    "enum": ["shot", "assist", "rebound", "offensive_touch"],
+                    "description": "Action type (shot, assist, rebound or offensive touch)"
                   }
                 }
               }
@@ -106,7 +106,7 @@ JSON Schema specification for ML-generated basketball player highlights data.
     },
     "unknownPlayers": {
       "type": "array",
-      "description": "Shot/assist detections where player identification failed",
+      "description": "Shot/assist/rebound/offensive touch detections where player identification failed",
       "items": {
         "type": "object",
         "required": [
