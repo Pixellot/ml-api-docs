@@ -2,6 +2,9 @@
 
 * [Introduction](README.md)
 
+## Maestro
+  * [Maestro Testing And Webhook Subscriptions](maestro/maestro-testing-and-webhook-subscriptions.md)
+
 ## Data API
   * [Data API Overview](data-api/README.md)
   * [Specifications](data-api/specifications/)
