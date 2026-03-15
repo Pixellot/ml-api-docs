@@ -1,16 +1,5 @@
 # Maestro Testing & Webhook Subscriptions
 
-| Field | Value |
-|-------|-------|
-| **Title** | Maestro Testing & Webhook Subscriptions |
-| **Author** | @Orr Goren |
-| **Date** | 15 Mar 2026 |
-| **Version** | 1.0.0 |
-| **Status** | APPROVED |
-| **Support Channel** | #pixellot_se_highlights |
-
----
-
 ## Maestro API — Getting Started: Authentication & Publishing a Game
 
 This guide walks you through the two essential steps to start using the Maestro API:
