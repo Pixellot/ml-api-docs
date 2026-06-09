@@ -1,6 +1,6 @@
 # Moment Schema
 
-A **moment** represents a single detected sports event (e.g. a shot, a foul, a pass) produced by the ML pipeline or Manual breakdown. Each moment is a JSON document divided into four top-level sections: `control`, `scope`, `stats`, and `visuals`.
+A **moment** represents a single detected sports event (e.g. a shot, a foul, a pass) produced by the ML pipeline or Manual breakdown. Each moment is a JSON document divided into four top-level sections: `control`, `scope`, and `stats`.
 
 ---
 
@@ -72,31 +72,6 @@ The statistical attributes captured for this moment, organised by schema version
 
 ---
 
-## `visuals`
-
-Defines how the moment should be presented visually, including per-player highlight segments and links to tracking/overlay assets.
-
-| Field | Type | Description |
-|---|---|---|
-| `segments` | array | List of visual segments, one per relevant player or role. See [Segments](#segments) below. |
-| `boundingBoxURL` | string | Storage path to a JSON file containing bounding-box player-tracking data for this moment. |
-| `verticalURL` | string | Storage path to a JSON file containing the vertical-view overlay data for this moment. |
-
-### Segments
-
-Each segment defines a clip window around a specific player's involvement in the moment.
-
-| Field | Type | Description |
-|---|---|---|
-| `statRef` | array of strings | One or more keys from `stats.playerAttributes` that this segment is associated with (e.g. `["playerAttributes.bb_player_shot"]`). |
-| `relativeOffset` | object | Start of the clip relative to `scope.start`. Contains `frame` (frame delta) and `seconds` (seconds delta). Negative values indicate the clip starts before the moment's start. |
-| `relativeEnd` | object | End of the clip relative to `scope.start`. Same structure as `relativeOffset`. |
-| `playerFID` | string | Federated ID (`{teamID}/{jerseyNumber}`) of the player featured in this segment. |
-| `teamFID` | string (ObjectId) | ID of the team the featured player belongs to. |
-| `confidence` | number [0–1] | Model confidence that this player is correctly identified for this segment. |
-
----
-
 ## Full Example
 
 ```json
@@ -141,36 +116,6 @@ Each segment defines a clip window around a specific player's involvement in the
       "bb_shot_type": "jumper",
       "bb_foul_type": "personal"
     }
-  },
-  "visuals": {
-    "segments": [
-      {
-        "statRef": ["playerAttributes.bb_player_assist"],
-        "relativeOffset": { "frame": -66, "seconds": -2.2 },
-        "relativeEnd": { "frame": 0, "seconds": 0 },
-        "playerFID": "65cb1dfb0b7a241a9e448639/J4",
-        "teamFID": "65cb1dfb0b7a241a9e448639",
-        "confidence": 0.91
-      },
-      {
-        "statRef": ["playerAttributes.bb_player_shot", "playerAttributes.bb_player_foul_drawn"],
-        "relativeOffset": { "frame": 0, "seconds": 0 },
-        "relativeEnd": { "frame": 60, "seconds": 2 },
-        "playerFID": "65cb1dfb0b7a241a9e448639/J7",
-        "teamFID": "65cb1dfb0b7a241a9e448639",
-        "confidence": 0.97
-      },
-      {
-        "statRef": ["playerAttributes.bb_player_foul_committed", "playerAttributes.bb_player_defender"],
-        "relativeOffset": { "frame": -30, "seconds": -1.0 },
-        "relativeEnd": { "frame": 60, "seconds": 2 },
-        "playerFID": "65cb1dfb0b7a241a9e448640/J12",
-        "teamFID": "65cb1dfb0b7a241a9e448640",
-        "confidence": 0.84
-      }
-    ],
-    "boundingBoxURL": "sportsEngine/65cb1dfb0b7a241a9e448600/pixellot_ml/highlights/playerTracking/shot_42_tracking.json",
-    "verticalURL": "sportsEngine/65cb1dfb0b7a241a9e448600/pixellot_ml/highlights/verticalView/shot_42_vertical.json"
   }
 }
 ```
