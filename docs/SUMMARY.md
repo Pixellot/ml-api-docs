@@ -5,6 +5,9 @@
 ## Maestro
   * [Maestro Testing And Webhook Subscriptions](maestro/maestro-testing-and-webhook-subscriptions.md)
 
+## Moments
+  * [Moment Schema](moments/moment-schema.md)
+
 ## Data API
   * [Data API Overview](data-api/README.md)
   * [Specifications](data-api/specifications/)
