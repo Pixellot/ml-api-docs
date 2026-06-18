@@ -1,21 +1,20 @@
 # Pixellot ML Breakdown Schema
 
-JSON Schema specification for ML-generated basketball player highlights data.
+JSON Schema specification for ML-generated player highlights data.
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ML Player Highlights API Schema",
-  "description": "Schema for ML-generated player highlights data from basketball game",
+  "description": "Schema for ML-generated player highlights data",
   "type": "object",
   "required": [
     "eventId",
-    "hlsUrl", 
+    "hlsUrl",
     "sport",
     "schemaVersion",
     "schemaUrl",
-    "processedAt",
-    "players"
+    "processedAt"
   ],
   "properties": {
     "eventId": {
@@ -30,8 +29,8 @@ JSON Schema specification for ML-generated basketball player highlights data.
     },
     "sport": {
       "type": "string",
-      "enum": ["basketball"],
-      "description": "Sport type (currently supports basketball)"
+      "enum": ["basketball", "Outdoor Football"],
+      "description": "Sport type"
     },
     "schemaVersion": {
       "type": "string",
@@ -48,6 +47,22 @@ JSON Schema specification for ML-generated basketball player highlights data.
       "format": "date-time",
       "description": "Processing completion timestamp in ISO 8601 format"
     },
+    "players": {
+      "$ref": "#/$defs/players"
+    },
+    "teams": {
+      "$ref": "#/$defs/teams"
+    },
+    "unknownPlayers": {
+      "$ref": "#/$defs/unknownPlayers"
+    }
+  },
+  "anyOf": [
+    { "required": ["players"] },
+    { "required": ["teams"] }
+  ],
+  "additionalProperties": false,
+  "$defs": {
     "players": {
       "type": "object",
       "description": "Player data keyed by {jerseyNumber}_{colorHex}",
@@ -68,38 +83,169 @@ JSON Schema specification for ML-generated basketball player highlights data.
             "jerseyNumber": {
               "type": "integer",
               "minimum": 0,
+              "maximum": 99,
               "description": "Player jersey number (0-99)"
             },
             "highlights": {
               "type": "array",
               "description": "Array of highlight segments for the player",
               "items": {
-                "type": "object",
-                "required": [
-                  "startTime",
-                  "endTime", 
-                  "type"
-                ],
-                "properties": {
-                  "startTime": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "Segment start timestamp in seconds"
-                  },
-                  "endTime": {
-                    "type": "number",
-                    "minimum": 0,
-                    "description": "Segment end timestamp in seconds"
-                  },
-                  "type": {
-                    "type": "string",
-                    "enum": ["shot", "assist", "rebound", "offensive_touch"],
-                    "description": "Action type (shot, assist, rebound or offensive touch)"
-                  }
-                }
+                "$ref": "#/$defs/playerHighlight"
               }
             }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "playerHighlight": {
+      "type": "object",
+      "required": [
+        "startTime",
+        "endTime",
+        "type"
+      ],
+      "properties": {
+        "startTime": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Segment start timestamp in seconds"
+        },
+        "endTime": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Segment end timestamp in seconds"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["shot", "assist", "rebound", "offensive_touch"],
+          "description": "Action type (shot, assist, rebound or offensive touch)"
+        }
+      },
+      "additionalProperties": false
+    },
+    "teams": {
+      "type": "object",
+      "required": ["home", "away"],
+      "properties": {
+        "home": {
+          "$ref": "#/$defs/teamHighlights"
+        },
+        "away": {
+          "$ref": "#/$defs/teamHighlights"
+        },
+        "unknown": {
+          "$ref": "#/$defs/teamHighlights"
+        }
+      },
+      "additionalProperties": false
+    },
+    "teamHighlights": {
+      "type": "object",
+      "required": ["highlights"],
+      "properties": {
+        "highlights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/footballHighlight"
           }
+        },
+        "stats": {
+          "$ref": "#/$defs/teamStats"
+        }
+      },
+      "additionalProperties": false
+    },
+    "teamStats": {
+      "type": "object",
+      "properties": {
+        "total_rushing_yards": {
+          "type": "number"
+        },
+        "total_passing_yards": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": true
+    },
+    "timePoint": {
+      "type": "object",
+      "required": ["frame", "utc", "seconds"],
+      "properties": {
+        "frame": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "footballHighlight": {
+      "type": "object",
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "$ref": "#/$defs/timePoint"
+        },
+        "end": {
+          "$ref": "#/$defs/timePoint"
+        },
+        "is_scoring": {
+          "type": "boolean"
+        },
+        "is_explosive": {
+          "type": "boolean"
+        },
+        "td": {
+          "type": ["string", "null"]
+        },
+        "gain": {
+          "type": ["number", "null"]
+        },
+        "quarter": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "clock": {
+          "type": ["string", "null"]
+        },
+        "down": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "yardLineBegin": {
+          "type": ["number", "string", "null"]
+        },
+        "teamWithBall": {
+          "type": ["string", "null"],
+          "enum": ["Home", "Away", "Unknown", null]
+        },
+        "playType": {
+          "type": ["string", "null"]
+        },
+        "result": {
+          "type": ["string", "null"]
+        },
+        "distance": {
+          "type": ["number", "null"]
+        },
+        "points_scored": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "is_turnover": {
+          "type": "boolean"
+        },
+        "turnover_type": {
+          "type": ["string", "null"]
         }
       },
       "additionalProperties": false
@@ -138,6 +284,135 @@ JSON Schema specification for ML-generated basketball player highlights data.
       }
     }
   },
-  "additionalProperties": false
+  "examples": [
+    {
+      "eventId": "789dafb95e51ceb1b3440e99",
+      "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
+      "sport": "Outdoor Football",
+      "schemaVersion": "v1.2.0",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
+      "processedAt": "2025-09-10T15:30:00.000000Z",
+      "teams": {
+        "home": {
+          "highlights": [
+            {
+              "start": {
+                "frame": 1500,
+                "utc": "2025-09-10T14:05:00.000000Z",
+                "seconds": 50.0
+              },
+              "end": {
+                "frame": 1800,
+                "utc": "2025-09-10T14:05:10.000000Z",
+                "seconds": 60.0
+              },
+              "is_scoring": true,
+              "is_explosive": true,
+              "td": "passing",
+              "gain": 35.0,
+              "quarter": 1,
+              "clock": "10:00",
+              "down": 1,
+              "yardLineBegin": 35,
+              "teamWithBall": "Home",
+              "playType": "pass",
+              "result": "touchdown",
+              "distance": 10,
+              "points_scored": 6,
+              "is_turnover": false,
+              "turnover_type": null
+            }
+          ],
+          "stats": {
+            "total_rushing_yards": 85.0,
+            "total_passing_yards": 210.0
+          }
+        },
+        "away": {
+          "highlights": [
+            {
+              "start": {
+                "frame": 3600,
+                "utc": "2025-09-10T14:12:00.000000Z",
+                "seconds": 120.0
+              },
+              "end": {
+                "frame": 3900,
+                "utc": "2025-09-10T14:12:10.000000Z",
+                "seconds": 130.0
+              },
+              "is_scoring": false,
+              "is_explosive": false,
+              "td": null,
+              "gain": 4.0,
+              "quarter": 2,
+              "clock": "08:45",
+              "down": 2,
+              "yardLineBegin": 22,
+              "teamWithBall": "Away",
+              "playType": "rush",
+              "result": "gain",
+              "distance": 6,
+              "points_scored": null,
+              "is_turnover": false,
+              "turnover_type": null
+            }
+          ],
+          "stats": {
+            "total_rushing_yards": 60.0,
+            "total_passing_yards": 145.0
+          }
+        }
+      }
+    },
+    {
+      "eventId": "689cafb95e51ceb1b3440e53",
+      "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
+      "sport": "basketball",
+      "schemaVersion": "v1.2.0",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
+      "processedAt": "2025-08-17T07:14:53.154476Z",
+      "players": {
+        "11_ffffff": {
+          "jerseyColor": "#ffffff",
+          "jerseyNumber": 11,
+          "highlights": [
+            {
+              "startTime": 383,
+              "endTime": 394,
+              "type": "shot"
+            }
+          ]
+        },
+        "42_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 42,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 491,
+              "type": "shot"
+            }
+          ]
+        },
+        "22_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 22,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 494,
+              "type": "assist"
+            },
+            {
+              "startTime": 1038,
+              "endTime": 1049,
+              "type": "rebound"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }
 ```
