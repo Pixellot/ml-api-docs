@@ -344,7 +344,7 @@ JSON Schema specification for ML-generated player highlights data.
               "is_scoring": false,
               "is_explosive": true,
               "td": null,
-              "gain": 4.0,
+              "gain": 20.0,
               "quarter": 2,
               "clock": "08:45",
               "down": 2,
