@@ -259,16 +259,34 @@ curl -X POST https://api.pixellot.tv/v1/monitoring/subscriptions \
   -H "Content-Type: application/json" \
   -d '{
     "messageType": "EventMlBreakdownUpdate",
+    "url": "https://your-webhook-endpoint.com/basketball-highlights",
+    "emails": "alerts@example.com",
     "tenant": "YOUR_TENANT_ID",
-    "url": "https://your-webhook-endpoint.com/basketball-highlights"
+    "secret": "your-shared-secret",
+    "type": "external"
   }'
 ```
 
-**Required Parameters:**
+**Field Reference:**
 
-- `messageType`: Always use `"EventMlBreakdownUpdate"`
-- `tenant`: Your tenant ID (provided by Pixellot)
-- `url`: Your HTTPS webhook endpoint
+| Field | Required | Type | Description |
+|-------|----------|------|-------------|
+| `messageType` | Yes | string (enum) | The notification type. Use `"EventMlBreakdownUpdate"` for basketball highlight updates. |
+| `url` | Yes | string | Your HTTPS webhook endpoint that will receive the notification. |
+| `emails` | Yes | string | Comma-separated email list (single string, not an array). Example: `"alerts@example.com,ops@example.com"`. |
+| `tenant` | No | string | Your tenant identifier (provided by Pixellot). |
+| `secret` | No | string | Shared secret for signing/authenticating the webhook payload. |
+| `type` | No | string (enum) | Subscription scope — `"internal"` or `"external"`. Omit if unspecified. |
+
+**Minimal body (required fields only):**
+
+```json
+{
+  "messageType": "EventMlBreakdownUpdate",
+  "url": "https://your-webhook-endpoint.com/basketball-highlights",
+  "emails": "alerts@example.com"
+}
+```
 
 ---
 
