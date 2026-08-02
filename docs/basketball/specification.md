@@ -1,3 +1,10 @@
+# Pixellot ML Breakdown Schema - Basketball
+
+JSON Schema specification for ML-generated basketball highlights data (`players`-based structure).
+
+Full schema: [schema.json](schema.json)
+
+```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ML Highlights API Schema - Basketball",
@@ -154,7 +161,7 @@
       "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
       "sport": "basketball",
       "schemaVersion": "v1.2.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/basketball.schema.json",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/docs/basketball/schema.json",
       "processedAt": "2025-08-17T07:14:53.154476Z",
       "players": {
         "11_ffffff": {
@@ -199,3 +206,4 @@
     }
   ]
 }
+```

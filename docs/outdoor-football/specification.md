@@ -1,3 +1,10 @@
+# Pixellot ML Breakdown Schema - Outdoor Football
+
+JSON Schema specification for ML-generated Outdoor Football highlights data (`teams`-based structure).
+
+Full schema: [schema.json](schema.json)
+
+```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "ML Highlights API Schema - Outdoor Football",
@@ -184,7 +191,7 @@
       "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
       "sport": "Outdoor Football",
       "schemaVersion": "v1.2.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/outdoor-football.schema.json",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/docs/outdoor-football/schema.json",
       "processedAt": "2025-09-10T15:30:00.000000Z",
       "teams": {
         "home": {
@@ -263,3 +270,4 @@
     }
   ]
 }
+```

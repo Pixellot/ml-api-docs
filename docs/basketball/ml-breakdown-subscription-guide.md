@@ -76,7 +76,7 @@ You'll receive three types of notifications:
 
 ## JSON Data Structure
 
-The full schema for the basketball player highlights JSON output is defined in [Pixellot ML Breakdown Schema](../specifications/pixellot-ml-breakdown-schema.md).
+The full schema for the basketball player highlights JSON output is defined in [Pixellot ML Breakdown Schema](specification.md).
 
 When processing completes, you'll receive a JSON file that follows this specification.
 
