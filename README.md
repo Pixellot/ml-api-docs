@@ -8,7 +8,7 @@ The ML Highlights API provides structured data about key basketball moments dete
 
 ## API Schema
 
-The current API schema version is `v1.2.0` and can be found in [schema.json](schema.json).
+The current API schema version is `v1.2.0` and is split by sport: [basketball.schema.json](basketball.schema.json) and [outdoor-football.schema.json](outdoor-football.schema.json).
 
 ## Support
 

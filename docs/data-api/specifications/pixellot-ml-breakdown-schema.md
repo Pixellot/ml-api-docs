@@ -1,12 +1,16 @@
 # Pixellot ML Breakdown Schema
 
-JSON Schema specification for ML-generated player highlights data.
+JSON Schema specification for ML-generated highlights data. The schema is split per sport, since basketball uses a `players`-based structure and Outdoor Football uses a `teams`-based structure.
+
+## Basketball
+
+Full schema: [basketball.schema.json](../../../basketball.schema.json)
 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "ML Player Highlights API Schema",
-  "description": "Schema for ML-generated player highlights data",
+  "title": "ML Highlights API Schema - Basketball",
+  "description": "Schema for ML-generated basketball highlights data",
   "type": "object",
   "required": [
     "eventId",
@@ -14,7 +18,8 @@ JSON Schema specification for ML-generated player highlights data.
     "sport",
     "schemaVersion",
     "schemaUrl",
-    "processedAt"
+    "processedAt",
+    "players"
   ],
   "properties": {
     "eventId": {
@@ -29,7 +34,7 @@ JSON Schema specification for ML-generated player highlights data.
     },
     "sport": {
       "type": "string",
-      "enum": ["basketball", "Outdoor Football"],
+      "enum": ["basketball"],
       "description": "Sport type"
     },
     "schemaVersion": {
@@ -50,17 +55,10 @@ JSON Schema specification for ML-generated player highlights data.
     "players": {
       "$ref": "#/$defs/players"
     },
-    "teams": {
-      "$ref": "#/$defs/teams"
-    },
     "unknownPlayers": {
       "$ref": "#/$defs/unknownPlayers"
     }
   },
-  "anyOf": [
-    { "required": ["players"] },
-    { "required": ["teams"] }
-  ],
   "additionalProperties": false,
   "$defs": {
     "players": {
@@ -125,6 +123,149 @@ JSON Schema specification for ML-generated player highlights data.
       },
       "additionalProperties": false
     },
+    "unknownPlayers": {
+      "type": "array",
+      "description": "Shot/assist/rebound/offensive touch detections where player identification failed",
+      "items": {
+        "type": "object",
+        "required": [
+          "startTime",
+          "endTime",
+          "color_hex",
+          "playerN"
+        ],
+        "properties": {
+          "startTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment start timestamp in seconds"
+          },
+          "endTime": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Segment end timestamp in seconds"
+          },
+          "color_hex": {
+            "type": "string",
+            "description": "Team color in hex format (empty string if unknown)"
+          },
+          "playerN": {
+            "type": "integer",
+            "description": "Player number (-1 for unknown)"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "eventId": "689cafb95e51ceb1b3440e53",
+      "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
+      "sport": "basketball",
+      "schemaVersion": "v1.2.0",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/basketball.schema.json",
+      "processedAt": "2025-08-17T07:14:53.154476Z",
+      "players": {
+        "11_ffffff": {
+          "jerseyColor": "#ffffff",
+          "jerseyNumber": 11,
+          "highlights": [
+            {
+              "startTime": 383,
+              "endTime": 394,
+              "type": "shot"
+            }
+          ]
+        },
+        "42_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 42,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 491,
+              "type": "shot"
+            }
+          ]
+        },
+        "22_ff0000": {
+          "jerseyColor": "#ff0000",
+          "jerseyNumber": 22,
+          "highlights": [
+            {
+              "startTime": 480,
+              "endTime": 494,
+              "type": "assist"
+            },
+            {
+              "startTime": 1038,
+              "endTime": 1049,
+              "type": "rebound"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+## Outdoor Football
+
+Full schema: [outdoor-football.schema.json](../../../outdoor-football.schema.json)
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ML Highlights API Schema - Outdoor Football",
+  "description": "Schema for ML-generated Outdoor Football highlights data",
+  "type": "object",
+  "required": [
+    "eventId",
+    "hlsUrl",
+    "sport",
+    "schemaVersion",
+    "schemaUrl",
+    "processedAt",
+    "teams"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Unique event identifier (24-character hex)",
+      "pattern": "^[a-f0-9]{24}$"
+    },
+    "hlsUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Main HLS stream URL for the event"
+    },
+    "sport": {
+      "type": "string",
+      "enum": ["Outdoor Football"],
+      "description": "Sport type"
+    },
+    "schemaVersion": {
+      "type": "string",
+      "description": "Schema version for data format compatibility",
+      "pattern": "^v\\d+\\.\\d+\\.\\d+$"
+    },
+    "schemaUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the JSON schema definition"
+    },
+    "processedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Processing completion timestamp in ISO 8601 format"
+    },
+    "teams": {
+      "$ref": "#/$defs/teams"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
     "teams": {
       "type": "object",
       "required": ["home", "away"],
@@ -252,39 +393,6 @@ JSON Schema specification for ML-generated player highlights data.
         }
       },
       "additionalProperties": false
-    },
-    "unknownPlayers": {
-      "type": "array",
-      "description": "Shot/assist/rebound/offensive touch detections where player identification failed",
-      "items": {
-        "type": "object",
-        "required": [
-          "startTime",
-          "endTime",
-          "color_hex",
-          "playerN"
-        ],
-        "properties": {
-          "startTime": {
-            "type": "number",
-            "minimum": 0,
-            "description": "Segment start timestamp in seconds"
-          },
-          "endTime": {
-            "type": "number",
-            "minimum": 0,
-            "description": "Segment end timestamp in seconds"
-          },
-          "color_hex": {
-            "type": "string",
-            "description": "Team color in hex format (empty string if unknown)"
-          },
-          "playerN": {
-            "type": "integer",
-            "description": "Player number (-1 for unknown)"
-          }
-        }
-      }
     }
   },
   "examples": [
@@ -293,7 +401,7 @@ JSON Schema specification for ML-generated player highlights data.
       "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
       "sport": "Outdoor Football",
       "schemaVersion": "v1.2.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/outdoor-football.schema.json",
       "processedAt": "2025-09-10T15:30:00.000000Z",
       "teams": {
         "home": {
@@ -367,54 +475,6 @@ JSON Schema specification for ML-generated player highlights data.
             "total_passing_yards": 145.0,
             "final_score": 17
           }
-        }
-      }
-    },
-    {
-      "eventId": "689cafb95e51ceb1b3440e53",
-      "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
-      "sport": "basketball",
-      "schemaVersion": "v1.2.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
-      "processedAt": "2025-08-17T07:14:53.154476Z",
-      "players": {
-        "11_ffffff": {
-          "jerseyColor": "#ffffff",
-          "jerseyNumber": 11,
-          "highlights": [
-            {
-              "startTime": 383,
-              "endTime": 394,
-              "type": "shot"
-            }
-          ]
-        },
-        "42_ff0000": {
-          "jerseyColor": "#ff0000",
-          "jerseyNumber": 42,
-          "highlights": [
-            {
-              "startTime": 480,
-              "endTime": 491,
-              "type": "shot"
-            }
-          ]
-        },
-        "22_ff0000": {
-          "jerseyColor": "#ff0000",
-          "jerseyNumber": 22,
-          "highlights": [
-            {
-              "startTime": 480,
-              "endTime": 494,
-              "type": "assist"
-            },
-            {
-              "startTime": 1038,
-              "endTime": 1049,
-              "type": "rebound"
-            }
-          ]
         }
       }
     }
