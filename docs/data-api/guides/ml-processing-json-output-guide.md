@@ -54,7 +54,7 @@ When processing completes, you'll get a JSON file with this structure:
   "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
   "sport": "basketball",
   "schemaVersion": "v1.0.0",
-  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/schema.json",
+  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/basketball.schema.json",
   "processedAt": "2024-01-15T14:30:45Z",
   "players": {
     "23_ffffff": {
