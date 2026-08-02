@@ -13,17 +13,17 @@
   * [Schema Update Partner Guide](data-api/guides/schema-update-partner-guide.md)
 
 ## Basketball
-  * [Specification](basketball/specification.md)
-  * [Schema](basketball/schema.json)
-  * [Glossary](basketball/glossary.md)
-  * [Partner API - Adding AI Player Highlights Extension](basketball/partner-api-ml-extensions-guide.md)
-  * [ML Processing with JSON Output Type](basketball/ml-processing-json-output-guide.md)
-  * [EventMlBreakdownUpdate Subscription Guide](basketball/ml-breakdown-subscription-guide.md)
+  * [Specification](data-api/basketball/specification.md)
+  * [Schema](data-api/basketball/schema.json)
+  * [Glossary](data-api/basketball/glossary.md)
+  * [Partner API - Adding AI Player Highlights Extension](data-api/basketball/partner-api-ml-extensions-guide.md)
+  * [ML Processing with JSON Output Type](data-api/basketball/ml-processing-json-output-guide.md)
+  * [EventMlBreakdownUpdate Subscription Guide](data-api/basketball/ml-breakdown-subscription-guide.md)
 
 ## Outdoor Football
-  * [Specification](outdoor-football/specification.md)
-  * [Schema](outdoor-football/schema.json)
-  * [Glossary](outdoor-football/glossary.md)
+  * [Specification](data-api/outdoor-football/specification.md)
+  * [Schema](data-api/outdoor-football/schema.json)
+  * [Glossary](data-api/outdoor-football/glossary.md)
 
 
 

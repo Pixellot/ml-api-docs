@@ -8,7 +8,7 @@ The ML Highlights API provides structured data about key basketball and Outdoor 
 
 ## API Schema
 
-The current API schema version is `v1.2.0` and is split by sport: [basketball schema.json](docs/basketball/schema.json) and [outdoor-football schema.json](docs/outdoor-football/schema.json).
+The current API schema version is `v1.2.0` and is split by sport: [basketball schema.json](docs/data-api/basketball/schema.json) and [outdoor-football schema.json](docs/data-api/outdoor-football/schema.json).
 
 ## Support
 
