@@ -19,6 +19,7 @@
     * [Schema Update Partner Guide](data-api/guides/schema-update-partner-guide.md)
   * [Glossary](data-api/glossary/)
     * [Basketball](data-api/glossary/Basketball.md)
+    * [Outdoor Football](data-api/glossary/Outdoor%20Football.md)
 
 
 
