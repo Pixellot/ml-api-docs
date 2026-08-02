@@ -165,6 +165,9 @@ JSON Schema specification for ML-generated player highlights data.
         },
         "total_passing_yards": {
           "type": "number"
+        },
+        "final_score": {
+          "type": "integer"
         }
       },
       "additionalProperties": true
@@ -325,7 +328,8 @@ JSON Schema specification for ML-generated player highlights data.
           ],
           "stats": {
             "total_rushing_yards": 85.0,
-            "total_passing_yards": 210.0
+            "total_passing_yards": 210.0,
+            "final_score": 24
           }
         },
         "away": {
@@ -360,7 +364,8 @@ JSON Schema specification for ML-generated player highlights data.
           ],
           "stats": {
             "total_rushing_yards": 60.0,
-            "total_passing_yards": 145.0
+            "total_passing_yards": 145.0,
+            "final_score": 17
           }
         }
       }
