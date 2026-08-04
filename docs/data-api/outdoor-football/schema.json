@@ -156,15 +156,25 @@
           "enum": ["Home", "Away", "Unknown", null]
         },
         "playType": {
-          "type": ["string", "null"]
+          "type": ["string", "null"],
+          "enum": ["run", "pass", null]
         },
         "result": {
-          "type": ["string", "null"]
+          "type": ["string", "null"],
+          "enum": ["Made", "Complete", "Incomplete", null]
         },
         "distance": {
           "type": ["number", "null"]
         },
         "points_scored": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "home_score": {
+          "type": ["integer", "null"],
+          "minimum": 0
+        },
+        "away_score": {
           "type": ["integer", "null"],
           "minimum": 0
         },
