@@ -45,6 +45,11 @@ Full schema: [schema.json](schema.json)
       "format": "uri",
       "description": "URL to the JSON schema definition"
     },
+    "modelVersion": {
+      "type": "string",
+      "description": "Major version of the ML model that produced the highlights. Changes only on major model releases; omitted when unknown.",
+      "pattern": "^[0-9]+$"
+    },
     "processedAt": {
       "type": "string",
       "format": "date-time",
@@ -160,8 +165,9 @@ Full schema: [schema.json](schema.json)
       "eventId": "689cafb95e51ceb1b3440e53",
       "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
       "sport": "basketball",
-      "schemaVersion": "v1.2.0",
-      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/docs/data-api/basketball/schema.json",
+      "schemaVersion": "v1.3.0",
+      "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.3.0/docs/data-api/basketball/schema.json",
+      "modelVersion": "1",
       "processedAt": "2025-08-17T07:14:53.154476Z",
       "players": {
         "11_ffffff": {
