@@ -53,8 +53,9 @@ When processing completes, you'll get a JSON file with this structure:
   "eventId": "507f1f77bcf86cd799439011",
   "hlsUrl": "https://cdn.example.com/tenant/eventId/venue_hls/hd_hls/hd_hls.m3u8",
   "sport": "basketball",
-  "schemaVersion": "v1.0.0",
-  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.0.0/docs/data-api/basketball/schema.json",
+  "schemaVersion": "v1.3.0",
+  "schemaUrl": "https://raw.githubusercontent.com/Pixellot/ml-api-docs/refs/tags/v1.3.0/docs/data-api/basketball/schema.json",
+  "modelVersion": "1",
   "processedAt": "2024-01-15T14:30:45Z",
   "players": {
     "23_ffffff": {
@@ -93,6 +94,7 @@ When processing completes, you'll get a JSON file with this structure:
 - `hlsUrl`: Main HLS stream URL for the event
 - `sport`: Sport type (currently basketball)
 - `schemaVersion`: API schema version
+- `modelVersion`: (optional) Major version of the ML model that produced the highlights; omitted when unknown
 - `processedAt`: When processing completed (ISO 8601 timestamp)
 - `players`: Organized by `{jerseyNumber}_{colorHex}` format containing:
   - `jerseyColor`: Player's jersey color (hex code)

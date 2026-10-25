@@ -11,6 +11,7 @@ This document describes the highlights detected in basketball ML breakdown. The 
 | sport | string | Sport type identifier | basketball |
 | schemaVersion | string | Version of the schema specification | v1.0.0 |
 | schemaUrl | string | Reference URL to the complete schema definition |  |
+| modelVersion | string | (Optional) Major version of the ML model that produced the highlights; omitted when unknown | 1 |
 | processedAt | string | Timestamp when the ML analysis was completed |  |
 | jerseyColor | string | Player's jersey color in hexadecimal format |  |
 | jerseyNumber | number | Player's jersey number as displayed on uniform |  |
